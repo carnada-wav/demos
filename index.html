@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Carnada · Demos</title>
-<meta name="description" content="Demos de Carnada para sellos y discográficas.">
+<meta name="description" content="Carnada demos for record labels and agencies.">
 <meta name="robots" content="noindex,nofollow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Carnada · Demos">
-<meta property="og:description" content="Demos de Carnada para sellos y discográficas.">
+<meta property="og:description" content="Carnada demos for record labels and agencies.">
 <meta name="theme-color" content="#070a04">
 <style>
 :root{--bg:#070a04;--lime:#c0ff00;--lime-dim:#6e9600;--text:#eaf5d0;--muted:#9db07a;--glass:rgba(255,255,255,.07);--glass-b:rgba(255,255,255,.22)}
@@ -60,13 +60,13 @@ footer p{margin:0 0 6px}
 <header>
 <h1 class="sr">Carnada · Demos</h1>
 <pre class="logo" id="logo" role="img" aria-label="CARNADA"></pre>
-<p>Demos · sellos y discográficas</p>
+<p>Demos · labels and agencies</p>
 </header>
 <main><div id="list" class="grid" aria-live="polite"></div>
-<noscript><div class="glass empty">Activa JavaScript para escuchar las demos.</div></noscript></main>
+<noscript><div class="glass empty">Enable JavaScript to listen to the demos.</div></noscript></main>
 <footer>
-<p>Material sin publicar. Por favor, no lo compartas sin permiso.</p>
-<p>¿Problemas con la reproducción o la descarga? Avisa a Alex por WhatsApp.</p>
+<p>Unreleased material. Please do not share without permission.</p>
+<p>Any problem with playback or download? Let Alex know on WhatsApp.</p>
 <p><b>&gt;</b> Carnada</p>
 </footer>
 </div>
@@ -138,7 +138,7 @@ draw(t);
 t.time.textContent=fmt(t.cur)+' / '+fmt(t.dur);
 t.wf.setAttribute('aria-valuemax',String(Math.floor(t.dur)));
 t.wf.setAttribute('aria-valuenow',String(Math.floor(t.cur)));
-t.wf.setAttribute('aria-valuetext',fmt(t.cur)+' de '+fmt(t.dur));
+t.wf.setAttribute('aria-valuetext',fmt(t.cur)+' of '+fmt(t.dur));
 }
 function tick(t){
 t.cur=t.a.currentTime;ui(t);
@@ -154,7 +154,7 @@ function toggle(t){
 if(t.a.paused){
 t.msg.textContent='';
 var p=t.a.play();
-if(p&&p.catch){p.catch(function(){t.msg.textContent='No se pudo reproducir el audio. Avisa a Alex por WhatsApp.'})}
+if(p&&p.catch){p.catch(function(){t.msg.textContent='Could not play the audio. Let Alex know on WhatsApp.'})}
 }else{t.a.pause()}
 }
 function build(s){
@@ -162,7 +162,7 @@ var art=document.createElement('article');
 art.className='glass track';
 art.innerHTML='<div class="top"><div><h2></h2><div class="by"></div></div><div class="tags"></div></div>'+
 '<div class="player"><button type="button" class="play">'+PLAY+'</button><div class="wf" role="slider" tabindex="0" aria-valuemin="0" aria-valuenow="0"><canvas aria-hidden="true"></canvas></div></div>'+
-'<div class="bar"><span class="time" aria-hidden="true"></span><a class="btn" download>Descargar</a></div>'+
+'<div class="bar"><span class="time" aria-hidden="true"></span><a class="btn" download>Download</a></div>'+
 '<div class="msg" role="alert"></div><audio preload="metadata"></audio>';
 art.querySelector('h2').textContent=s.title;
 art.querySelector('.by').textContent=s.artist+' · '+s.date;
@@ -171,22 +171,22 @@ art.querySelector('.tags').innerHTML=tg.map(function(x){var e=document.createEle
 var t={s:s,art:art,a:art.querySelector('audio'),wf:art.querySelector('.wf'),cv:art.querySelector('canvas'),btn:art.querySelector('.play'),time:art.querySelector('.time'),msg:art.querySelector('.msg'),peaks:s.peaks&&s.peaks.length?s.peaks:[0.3],dur:s.duration||0,cur:0,raf:0};
 t.a.src=s.audio;
 var dl=art.querySelector('.btn');dl.href=s.download||s.audio;dl.setAttribute('download','');
-dl.textContent='Descargar '+((s.format||'MP3').split(' ')[0]);
-dl.setAttribute('aria-label','Descargar '+s.title+' ('+((s.format||'MP3').split(' ')[0])+')');
-t.btn.setAttribute('aria-label','Reproducir '+s.title);
-t.wf.setAttribute('aria-label','Posición de '+s.title);
+dl.textContent='Download '+((s.format||'MP3').split(' ')[0]);
+dl.setAttribute('aria-label','Download '+s.title+' ('+((s.format||'MP3').split(' ')[0])+')');
+t.btn.setAttribute('aria-label','Play '+s.title);
+t.wf.setAttribute('aria-label','Position of '+s.title);
 t.btn.addEventListener('click',function(){toggle(t)});
 t.a.addEventListener('play',function(){
 tracks.forEach(function(o){if(o!==t&&!o.a.paused){o.a.pause()}});
-art.classList.add('playing');t.btn.setAttribute('aria-label','Pausar '+s.title);
+art.classList.add('playing');t.btn.setAttribute('aria-label','Pause '+s.title);
 cancelAnimationFrame(t.raf);tick(t);
 if('mediaSession' in navigator&&window.MediaMetadata){navigator.mediaSession.metadata=new MediaMetadata({title:s.title,artist:s.artist})}
 });
-t.a.addEventListener('pause',function(){art.classList.remove('playing');t.btn.setAttribute('aria-label','Reproducir '+s.title);cancelAnimationFrame(t.raf);t.cur=t.a.currentTime;ui(t)});
-t.a.addEventListener('ended',function(){art.classList.remove('playing');t.btn.setAttribute('aria-label','Reproducir '+s.title);cancelAnimationFrame(t.raf);t.cur=0;ui(t)});
+t.a.addEventListener('pause',function(){art.classList.remove('playing');t.btn.setAttribute('aria-label','Play '+s.title);cancelAnimationFrame(t.raf);t.cur=t.a.currentTime;ui(t)});
+t.a.addEventListener('ended',function(){art.classList.remove('playing');t.btn.setAttribute('aria-label','Play '+s.title);cancelAnimationFrame(t.raf);t.cur=0;ui(t)});
 t.a.addEventListener('timeupdate',function(){if(t.a.paused){t.cur=t.a.currentTime;ui(t)}});
 t.a.addEventListener('loadedmetadata',function(){if(isFinite(t.a.duration)&&t.a.duration>0){t.dur=t.a.duration;ui(t)}});
-t.a.addEventListener('error',function(){t.msg.textContent='No se pudo cargar el audio. Avisa a Alex por WhatsApp.'});
+t.a.addEventListener('error',function(){t.msg.textContent='Could not load the audio. Let Alex know on WhatsApp.'});
 var drag=false;
 function fx(e){var r=t.wf.getBoundingClientRect();return (e.clientX-r.left)/r.width}
 t.wf.addEventListener('pointerdown',function(e){drag=true;try{t.wf.setPointerCapture(e.pointerId)}catch(_){}seek(t,fx(e))});
@@ -207,11 +207,11 @@ return t;
 }
 fetch('demos.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(list){
 var el=document.getElementById('list');
-if(!list.length){el.innerHTML='<div class="glass empty">Todavía no hay demos.</div>';return}
+if(!list.length){el.innerHTML='<div class="glass empty">No demos yet.</div>';return}
 list.sort(function(a,b){return b.date.localeCompare(a.date)}).forEach(function(s){var t=build(s);el.appendChild(t.art);ui(t)});
 if(window.ResizeObserver){var ro=new ResizeObserver(function(){tracks.forEach(draw)});tracks.forEach(function(t){ro.observe(t.wf)})}
 else{window.addEventListener('resize',function(){tracks.forEach(draw)})}
-}).catch(function(){document.getElementById('list').innerHTML='<div class="glass empty">No se pudo cargar la lista.</div>'});
+}).catch(function(){document.getElementById('list').innerHTML='<div class="glass empty">Could not load the list.</div>'});
 </script>
 </body>
 </html>
