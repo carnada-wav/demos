@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carnada · Demos</title>
+<meta name="description" content="Demos de Carnada para sellos y discográficas.">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Carnada · Demos">
+<meta property="og:description" content="Demos de Carnada para sellos y discográficas.">
+<meta name="theme-color" content="#070a04">
+<style>
+:root{--bg:#070a04;--lime:#c0ff00;--lime-dim:#6e9600;--text:#eaf5d0;--muted:#9db07a;--glass:rgba(255,255,255,.07);--glass-b:rgba(255,255,255,.22)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{color-scheme:dark}
+body{margin:0;min-height:100vh;color:var(--text);background:var(--bg);font:16px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background-image:radial-gradient(520px 420px at 12% 8%,rgba(192,255,0,.40),transparent 70%),radial-gradient(560px 460px at 92% 92%,rgba(120,200,0,.32),transparent 70%),radial-gradient(420px 320px at 85% 10%,rgba(60,120,0,.35),transparent 70%);background-attachment:fixed}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:860px;margin:0 auto;padding:48px 16px 72px}
+header{text-align:center;margin-bottom:40px}
+pre.logo{margin:0 auto 12px;display:block;width:max-content;max-width:100%;overflow:hidden;color:var(--lime);font-weight:700;line-height:1.05;font-size:min(11px,calc((100vw - 32px)/52));text-shadow:0 0 10px rgba(192,255,0,.55);white-space:pre;text-align:left;min-height:17em}
+pre.logo.on{animation:glow 2.6s ease-out}
+header p{margin:0;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-size:13px;opacity:0;animation:up .8s ease 1.3s forwards}
+@keyframes glow{0%{text-shadow:0 0 26px #c0ff00,0 0 70px rgba(192,255,0,.85)}100%{text-shadow:0 0 10px rgba(192,255,0,.55)}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.glass{background:var(--glass);border:1px solid var(--glass-b);border-radius:24px;-webkit-backdrop-filter:blur(22px) saturate(140%);backdrop-filter:blur(22px) saturate(140%);box-shadow:0 18px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.28)}
+.grid{display:grid;gap:20px;grid-template-columns:1fr}
+.track{padding:22px;opacity:0;animation:up .8s ease 1.6s forwards}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px 20px;flex-wrap:wrap;margin-bottom:16px}
+.track h2{margin:0 0 2px;font-size:22px}
+.by{color:var(--muted);font-size:13px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid rgba(192,255,0,.4);color:var(--lime);background:rgba(192,255,0,.08)}
+.player{display:flex;align-items:center;gap:16px}
+.play{flex:none;width:56px;height:56px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;color:#0b1000;background:var(--lime);cursor:pointer;box-shadow:0 0 18px rgba(192,255,0,.35);transition:transform .15s,box-shadow .15s}
+.play:hover,.play:focus-visible{transform:scale(1.05);box-shadow:0 0 28px rgba(192,255,0,.6);outline:2px solid var(--text);outline-offset:2px}
+.play svg{width:24px;height:24px;fill:currentColor}
+.play .i-pause{display:none}
+.track.playing .play .i-play{display:none}
+.track.playing .play .i-pause{display:block}
+.wf{position:relative;flex:1;min-width:0;height:84px;cursor:pointer;touch-action:pan-y;border-radius:10px;-webkit-user-select:none;user-select:none}
+.wf:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+.wf canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.time{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.msg{min-height:20px;margin-top:8px;color:#ff7a7a;font-size:13px}
+.btn{display:inline-block;text-decoration:none;font:inherit;font-weight:700;font-size:14px;color:#0b1000;background:var(--lime);padding:9px 18px;border:0;border-radius:14px;cursor:pointer;box-shadow:0 0 18px rgba(192,255,0,.35);transition:transform .15s,box-shadow .15s}
+.btn:hover,.btn:focus-visible{transform:translateY(-1px);box-shadow:0 0 28px rgba(192,255,0,.6);outline:2px solid var(--text);outline-offset:2px}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+footer{margin-top:40px;text-align:center;color:var(--muted);font-size:12px;opacity:0;animation:up .8s ease 2s forwards}
+footer b{color:var(--lime-dim)}
+footer p{margin:0 0 6px}
+@media (max-width:520px){.track{padding:16px}.player{gap:12px}.play{width:48px;height:48px}.wf{height:72px}.bar{justify-content:center}}
+@media (prefers-reduced-motion:reduce){.track,header p,footer{opacity:1;animation:none}pre.logo.on{animation:none}.btn,.play{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1 class="sr">Carnada · Demos</h1>
+<pre class="logo" id="logo" role="img" aria-label="CARNADA"></pre>
+<p>Demos · sellos y discográficas</p>
+</header>
+<main><div id="list" class="grid" aria-live="polite"></div>
+<noscript><div class="glass empty">Activa JavaScript para escuchar las demos.</div></noscript></main>
+<footer>
+<p>Material sin publicar. Por favor, no lo compartas sin permiso.</p>
+<p>¿Problemas con la reproducción o la descarga? Avisa a Alex por WhatsApp.</p>
+<p><b>&gt;</b> Carnada</p>
+</footer>
+</div>
+<script>
+var LOGO=[
+'      ..         ###     ##.         #.               ###   ###               ###',
+'    .###.       .###     .##.       ###              ####   .###.            .###',
+'   ###          ####     ####.     .###    ##.      .###.   .#####.          ####',
+'  .##          #####    .##.###    ####    ##.      ####.   .##..###        #####',
+'  ###          #####    ###  ###   #####   ##.     .####.   .##   ###       #####',
+' .##          ######    ##.  .###  #####   ##.     #####.    ##    ###     ######',
+' ###         ### ###    ########.  ##.###  ##.    ### ##.    ##     ##    ### ###',
+'.##         .##  ###    #####.    .## .##  ##    ###  ###    ##    ###   .##  ###',
+'###        .###..###.  .## .##    .##  ##..##   .###..###    ##   .##.  .###..###.',
+'##.       .############.##  ###   .##  .#####  ############. ##.  ##.  .############',
+'###     . .##     ##.  .##   ###  .##   ####.  ###    .##    ##. ##.   .##     ##.',
+'.##   .##.##.     ###  .##    ### .##   .###. .##      ##.   ######    ###     ###',
+' ###.###.###      .##  .##     ###.##    ###  ###      ###   #####    ###      .##',
+'  #####  .         ##   ##      ##.       ..  .         #.   .###      .        ##',
+'                                ###                         .##.',
+'                                 ###                         .'
+];
+var lg=document.getElementById('logo'),FULL=LOGO.join('\n');
+lg.textContent=FULL;
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduce){lg.classList.add('on')}
+else{
+lg.style.width=lg.offsetWidth+'px';
+var W=Math.max.apply(null,LOGO.map(function(r){return r.length})),G='#.:+*01/',t0=null;
+var T=LOGO.map(function(r){return r.split('').map(function(_,c){return c/W*1200+Math.random()*350})});
+var frame=function(ts){
+if(t0===null)t0=ts;
+var el=ts-t0,done=true;
+var out=LOGO.map(function(r,i){var s='';for(var c=0;c<r.length;c++){var ch=r[c];if(ch===' '){s+=' ';continue}var tt=T[i][c];if(el>=tt+350){s+=ch}else{done=false;s+=el>=tt?G[Math.floor(Math.random()*G.length)]:' '}}return s}).join('\n');
+lg.textContent=out;
+if(!done){requestAnimationFrame(frame)}else{lg.textContent=FULL;lg.style.width='';lg.classList.add('on')}
+};
+lg.textContent=LOGO.map(function(r){return r.replace(/\S/g,' ')}).join('\n');
+requestAnimationFrame(frame);
+}
+var ICON='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="g1" cx="25%" cy="25%" r="60%"><stop offset="0" stop-color="#c0ff00" stop-opacity=".75"/><stop offset="1" stop-color="#c0ff00" stop-opacity="0"/></radialGradient><radialGradient id="g2" cx="80%" cy="85%" r="55%"><stop offset="0" stop-color="#78c800" stop-opacity=".6"/><stop offset="1" stop-color="#78c800" stop-opacity="0"/></radialGradient><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity=".08"/></linearGradient></defs><rect x="4" y="4" width="92" height="92" rx="22" fill="#0b1206"/><rect x="4" y="4" width="92" height="92" rx="22" fill="url(#g1)"/><rect x="4" y="4" width="92" height="92" rx="22" fill="url(#g2)"/><path d="M22 20h42l14 14v46a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4z" fill="url(#gl)" stroke="#fff" stroke-opacity=".5" stroke-width=".8"/><rect x="36" y="20" width="28" height="19" rx="2.5" fill="#fff" fill-opacity=".45" stroke="#fff" stroke-opacity=".6" stroke-width=".6"/><rect x="54" y="23" width="7" height="13" rx="1.5" fill="#000" fill-opacity=".6"/><rect x="28" y="50" width="46" height="26" rx="3" fill="#050802" fill-opacity=".85" stroke="#c0ff00" stroke-opacity=".6" stroke-width=".8"/><text x="51" y="68" text-anchor="middle" font-family="monospace" font-weight="700" font-size="9" fill="#c0ff00">CARNADA</text><rect x="68" y="72" width="6" height="6" rx="1" fill="#c0ff00" fill-opacity=".7"/></svg>';
+var fav=document.createElement('link');fav.rel='icon';fav.href='data:image/svg+xml,'+encodeURIComponent(ICON);document.head.appendChild(fav);
+
+var PLAY='<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.53.85l10.4-6.5a1 1 0 0 0 0-1.7L9.53 4.65A1 1 0 0 0 8 5.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4.5" height="14" rx="1.2"/><rect x="13.5" y="5" width="4.5" height="14" rx="1.2"/></svg>';
+var tracks=[];
+function fmt(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
+
+function draw(t){
+var c=t.cv,w=t.wf.clientWidth,h=t.wf.clientHeight;
+if(!w||!h)return;
+var dpr=window.devicePixelRatio||1,pw=Math.round(w*dpr),ph=Math.round(h*dpr);
+if(c.width!==pw||c.height!==ph){c.width=pw;c.height=ph}
+var x=c.getContext('2d');
+x.setTransform(dpr,0,0,dpr,0,0);
+x.clearRect(0,0,w,h);
+var bw=3,gap=2,n=Math.max(1,Math.floor((w+gap)/(bw+gap))),P=t.peaks,up=Math.round(h*.7),prog=t.dur?t.cur/t.dur:0;
+for(var i=0;i<n;i++){
+var a=Math.floor(i/n*P.length),b=Math.max(a+1,Math.floor((i+1)/n*P.length)),m=0;
+for(var j=a;j<b&&j<P.length;j++){if(P[j]>m)m=P[j]}
+var bh=Math.max(2,m*up),px=i*(bw+gap),on=(i+.5)/n<=prog;
+x.fillStyle=on?'#c0ff00':'rgba(234,245,208,.38)';
+x.fillRect(px,up-bh,bw,bh);
+x.fillStyle=on?'rgba(192,255,0,.42)':'rgba(234,245,208,.16)';
+x.fillRect(px,up+1,bw,Math.max(1,Math.min(h-up-1,bh*.42)));
+}
+}
+function ui(t){
+draw(t);
+t.time.textContent=fmt(t.cur)+' / '+fmt(t.dur);
+t.wf.setAttribute('aria-valuemax',String(Math.floor(t.dur)));
+t.wf.setAttribute('aria-valuenow',String(Math.floor(t.cur)));
+t.wf.setAttribute('aria-valuetext',fmt(t.cur)+' de '+fmt(t.dur));
+}
+function tick(t){
+t.cur=t.a.currentTime;ui(t);
+if(!t.a.paused&&!t.a.ended){t.raf=requestAnimationFrame(function(){tick(t)})}
+}
+function seek(t,frac){
+frac=Math.min(1,Math.max(0,frac));
+t.cur=frac*t.dur;
+try{t.a.currentTime=t.cur}catch(e){}
+ui(t);
+}
+function toggle(t){
+if(t.a.paused){
+t.msg.textContent='';
+var p=t.a.play();
+if(p&&p.catch){p.catch(function(){t.msg.textContent='No se pudo reproducir el audio. Avisa a Alex por WhatsApp.'})}
+}else{t.a.pause()}
+}
+function build(s){
+var art=document.createElement('article');
+art.className='glass track';
+art.innerHTML='<div class="top"><div><h2></h2><div class="by"></div></div><div class="tags"></div></div>'+
+'<div class="player"><button type="button" class="play">'+PLAY+'</button><div class="wf" role="slider" tabindex="0" aria-valuemin="0" aria-valuenow="0"><canvas aria-hidden="true"></canvas></div></div>'+
+'<div class="bar"><span class="time" aria-hidden="true"></span><a class="btn" download>Descargar</a></div>'+
+'<div class="msg" role="alert"></div><audio preload="metadata"></audio>';
+art.querySelector('h2').textContent=s.title;
+art.querySelector('.by').textContent=s.artist+' · '+s.date;
+var tg=[s.bpm+' BPM'].concat(s.key?[s.key]:[],s.duration?[fmt(s.duration)]:[],s.format?[s.format]:[]);
+art.querySelector('.tags').innerHTML=tg.map(function(x){var e=document.createElement('span');e.className='tag';e.textContent=x;return e.outerHTML}).join('');
+var t={s:s,art:art,a:art.querySelector('audio'),wf:art.querySelector('.wf'),cv:art.querySelector('canvas'),btn:art.querySelector('.play'),time:art.querySelector('.time'),msg:art.querySelector('.msg'),peaks:s.peaks&&s.peaks.length?s.peaks:[0.3],dur:s.duration||0,cur:0,raf:0};
+t.a.src=s.audio;
+var dl=art.querySelector('.btn');dl.href=s.download||s.audio;dl.setAttribute('download','');
+dl.textContent='Descargar '+((s.format||'MP3').split(' ')[0]);
+dl.setAttribute('aria-label','Descargar '+s.title+' ('+((s.format||'MP3').split(' ')[0])+')');
+t.btn.setAttribute('aria-label','Reproducir '+s.title);
+t.wf.setAttribute('aria-label','Posición de '+s.title);
+t.btn.addEventListener('click',function(){toggle(t)});
+t.a.addEventListener('play',function(){
+tracks.forEach(function(o){if(o!==t&&!o.a.paused){o.a.pause()}});
+art.classList.add('playing');t.btn.setAttribute('aria-label','Pausar '+s.title);
+cancelAnimationFrame(t.raf);tick(t);
+if('mediaSession' in navigator&&window.MediaMetadata){navigator.mediaSession.metadata=new MediaMetadata({title:s.title,artist:s.artist})}
+});
+t.a.addEventListener('pause',function(){art.classList.remove('playing');t.btn.setAttribute('aria-label','Reproducir '+s.title);cancelAnimationFrame(t.raf);t.cur=t.a.currentTime;ui(t)});
+t.a.addEventListener('ended',function(){art.classList.remove('playing');t.btn.setAttribute('aria-label','Reproducir '+s.title);cancelAnimationFrame(t.raf);t.cur=0;ui(t)});
+t.a.addEventListener('timeupdate',function(){if(t.a.paused){t.cur=t.a.currentTime;ui(t)}});
+t.a.addEventListener('loadedmetadata',function(){if(isFinite(t.a.duration)&&t.a.duration>0){t.dur=t.a.duration;ui(t)}});
+t.a.addEventListener('error',function(){t.msg.textContent='No se pudo cargar el audio. Avisa a Alex por WhatsApp.'});
+var drag=false;
+function fx(e){var r=t.wf.getBoundingClientRect();return (e.clientX-r.left)/r.width}
+t.wf.addEventListener('pointerdown',function(e){drag=true;try{t.wf.setPointerCapture(e.pointerId)}catch(_){}seek(t,fx(e))});
+t.wf.addEventListener('pointermove',function(e){if(drag)seek(t,fx(e))});
+t.wf.addEventListener('pointerup',function(){drag=false});
+t.wf.addEventListener('pointercancel',function(){drag=false});
+t.wf.addEventListener('keydown',function(e){
+var k=e.key,d=0;
+if(k==='ArrowRight'||k==='ArrowUp')d=5;else if(k==='ArrowLeft'||k==='ArrowDown')d=-5;else if(k==='PageUp')d=15;else if(k==='PageDown')d=-15;
+else if(k==='Home'){e.preventDefault();seek(t,0);return}
+else if(k==='End'){e.preventDefault();seek(t,.999);return}
+else if(k===' '){e.preventDefault();toggle(t);return}
+else return;
+e.preventDefault();seek(t,(t.cur+d)/t.dur);
+});
+tracks.push(t);
+return t;
+}
+fetch('demos.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(list){
+var el=document.getElementById('list');
+if(!list.length){el.innerHTML='<div class="glass empty">Todavía no hay demos.</div>';return}
+list.sort(function(a,b){return b.date.localeCompare(a.date)}).forEach(function(s){var t=build(s);el.appendChild(t.art);ui(t)});
+if(window.ResizeObserver){var ro=new ResizeObserver(function(){tracks.forEach(draw)});tracks.forEach(function(t){ro.observe(t.wf)})}
+else{window.addEventListener('resize',function(){tracks.forEach(draw)})}
+}).catch(function(){document.getElementById('list').innerHTML='<div class="glass empty">No se pudo cargar la lista.</div>'});
+</script>
+</body>
+</html>
